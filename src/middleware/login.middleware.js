@@ -31,9 +31,11 @@ const verifyLogin = async (ctx, next) => {
 const verifyAuth = async (ctx, next) => {
   // 授权信息
   const authorization = ctx.headers.authorization
+  if(!authorization) {
+    return ctx.app.emit('error', UNAUTHORIZED, ctx)
+  }
   // 获取token
   const token = authorization.replace('Bearer ', '')
-
   // 验证token是否是有效的
   try {
     // 获取token中的信息
@@ -42,7 +44,6 @@ const verifyAuth = async (ctx, next) => {
     })
     // 将token的信息保存下来
     ctx.user = result
-
     // 执行下一个中间件
     await next()
     
