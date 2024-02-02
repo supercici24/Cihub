@@ -1,6 +1,6 @@
 const KoaRouter = require('@koa/router')
 const { verifyAuth } = require('../middleware/login.middleware')
-const { create, list } = require('../controller/moment.controller')
+const { create, list, detail } = require('../controller/moment.controller')
 
 const momentRouter = new KoaRouter({ prefix: '/moment'})
 
@@ -9,5 +9,8 @@ momentRouter.post('/',verifyAuth, create)
 
 // 获取动态列表，不需要验证用户身份，游客都可以看到我发表的评论呢验证个啥
 momentRouter.get('/',list)
+
+// 查询单个详细动态
+momentRouter.get('/:momentId',detail)
 
 module.exports = momentRouter
