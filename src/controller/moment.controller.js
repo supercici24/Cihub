@@ -60,7 +60,6 @@ class MomentController {
   async remove(ctx, next) {
     const {momentId} = ctx.params
     const result = await momentService.remove(momentId)
-    console.log(result)
     ctx.body = {
       code: 0,
       message: '删除动态成功',
