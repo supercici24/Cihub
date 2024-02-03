@@ -3,7 +3,7 @@ const {
   NAME_OR_PASSWORD_IS_REQUIRE, 
   USER_ALREADY_EXIST, 
   NAME_IS_NOT_EXISTS, 
-  PASSWORD_IS_INCORRECT, UNAUTHORIZED 
+  PASSWORD_IS_INCORRECT, UNAUTHORIZED, OPERATION_NOT_ALLOW 
 } = require('../config/error')
 
 app.on('error', (error, ctx) => {
@@ -30,6 +30,9 @@ app.on('error', (error, ctx) => {
       code = -1005
       message = '无效的token'
       break
+    case OPERATION_NOT_ALLOW:
+      code = -2001
+      message = '没有操作权限'
   }
   ctx.body = { code, message }
 })
