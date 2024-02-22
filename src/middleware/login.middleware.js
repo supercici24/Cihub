@@ -31,7 +31,7 @@ const verifyLogin = async (ctx, next) => {
 const verifyAuth = async (ctx, next) => {
   // 授权信息
   const authorization = ctx.headers.authorization
-  if(!authorization) {
+  if (!authorization) {
     return ctx.app.emit('error', UNAUTHORIZED, ctx)
   }
   // 获取token
@@ -46,7 +46,7 @@ const verifyAuth = async (ctx, next) => {
     ctx.user = result
     // 执行下一个中间件
     await next()
-    
+
   } catch (error) {
     ctx.app.emit('error', UNAUTHORIZED, ctx)
   }

@@ -10,7 +10,6 @@ class MomentController {
 
     // 将动态相关的数据保存到数据库中
     const result = await MomentService.create(content, id)
-    console.log("resu:", result)
     ctx.body = {
       code: 0,
       message: '发布动态成功',

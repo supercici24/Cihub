@@ -42,7 +42,7 @@ const verifyPermission = async (ctx, next) => {
   const resouceId = ctx.params[keyName]
   const resouceName = keyName.replace('Id', '')
 
-  // 查询user的id是否有修改momentId的权限
+  // 查询user的id是否有修改资源的权限
   const isPermission = await pemissionService.chekResource(resouceName, resouceId, id)
   if (!isPermission) {
     return ctx.app.emit('error', OPERATION_NOT_ALLOW, ctx)
